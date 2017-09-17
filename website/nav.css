@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* 
+######################
+#   TOP NAVIGATION   #
+######################
+*/
+#top_nav {
+	float: left;
+	margin: 0;
+	width: 956px;
+	
+}
+	#top_nav ul {
+		margin: 0;
+		padding: 0 0 0 65px;
+	    padding-left: 14em;
+		list-style: none;
+		}
+		
+				

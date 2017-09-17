@@ -1,0 +1,168 @@
+<html>
+
+<head>
+<title>Splitsbrowser development</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta
+  content="Splitsbrowser, orienteering, split times, SportIdent, Emit, splits, graph, epunching, results"
+  name="keywords">
+
+<link rel="stylesheet" type="text/css" href="sbstyles.css">
+<style>.SmallCourier { font-size: 9px; font-family: Courier-New, Courier, sans-serif }
+</style>
+</head>
+
+<body vlink="#000066" link="#cc6600" bgcolor="#ffffff" leftmargin="0" topmargin="0" marginwidth="0"
+  marginheight="0">
+
+<!--#include virtual="header.inc" -->
+
+<table border="0" cellpadding="0" cellspacing="0" width="580">
+  <tr>
+    <td width="20"></td>
+
+    <td>
+    <h1><b>Using Splitsbrowser on your own site</b></h1>
+    <p>Event organisers can use SplitsBrowser to display results on their own site as follows:</p>
+    <table cellspacing="0" cellpadding="7" width="100%" border="1">
+      <tbody>
+        <tr>
+          <td valign="top" width="3%">1</td>
+          <td valign="top" width="97%"><b>Download SplitsBrowser deployment zip file from <a
+            href="releases/splitsbrowserdeploy.zip">here</a></b><a><b></b>.</a></td>
+        </tr>
+        <tr>
+          <td valign="top" width="3%">2</td>
+          <td valign="top" width="97%"><b>Unzip java executable and example html from the zip file.<br>
+          </b>You will need a&nbsp; decompression program like WinZip.&nbsp; It is possible that
+          your browser will perform this stage automatically when you download the file.</td>
+        </tr>
+        <tr>
+          <td valign="top" width="3%">3&nbsp;</td>
+          <td valign="top" width="97%"><b>Create html output file from e-punching system.</b></td>
+        </tr>
+        <tr>
+          <td valign="top" width="3%">4&nbsp;</td>
+          <td valign="top" width="97%"><b>Compress the html output using WinZip program if you have
+          it.&nbsp;&nbsp;</b><br>
+          As a guide if the compressed file size is greater than 100KB then it may be worth
+          considering breaking the results up into separate sub-files.&nbsp;</td>
+        </tr>
+        <tr>
+          <td valign="top" width="3%">5</td>
+          <td valign="top" width="97%">
+          <p><b>Modify the example html</b> as follows:<br>
+          <br>
+          1. Edit the value of the <strong>src</strong> applet parameter to the name of the your
+          results file. (replace filename.zip) as described in applet customisation below.<br>
+          <br>
+          2. Edit the <strong>dataformat</strong> applet parameter to identify the format of your
+          file as described in applet customisation below.<br>
+          <br>
+          3 . Edit the html page title to the name of your event.</p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" width="3%">6</td>
+          <td valign="top" width="97%"><b>Add a link to&nbsp;the html file from your event details.</b></td>
+        </tr>
+        <tr>
+          <td valign="top" width="3%">7</td>
+          <td valign="top" width="97%"><b>Upload the html file, zipped results and jar file to the
+          same directory</b> on your web server.</td>
+        </tr>
+        <tr>
+          <td valign="top" width="3%">8</td>
+          <td valign="top" width="97%"><b>Test that the results can be successfully viewed online.</b></td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Applet customisation</h2>
+    It is possible to customise the display using applet parameters.&nbsp;&nbsp; The following
+    parameter values may be set. For each parameter the name and value should be specified in the
+    html file in double quotes.&nbsp; <pre>&lt;PARAM NAME=&quot;dataformat&quot; VALUE=&quot;SICVS&quot;&gt;</pre>
+    Color values are specified using hexadecimal RGB values which is the same as HTML uses. The
+    following parameters are available.&nbsp<br>
+    <br>
+    <div align="left">
+    <table bordercolor="#808080" cellspacing="0" cellpadding="4" width="100%" border="1">
+      <tbody>
+        <tr>
+          <td valign="top" width="21%" bgcolor="#808080"><b>Name</b></td>
+          <td valign="top" width="64%" bgcolor="#808080"><b>Description</b></td>
+          <td valign="top" width="15%" bgcolor="#808080"><b>Example</b></td>
+        </tr>
+        <tr>
+          <td valign="top" width="21%">src</td>
+          <td valign="top" width="64%">
+          <p>Filename of the results file.<br>
+          <br>
+          If the file extension is:<br>
+          .zip then the file will be interpreted as a compressed zip file. <br>
+          .gz the file will be interpreted as a <a href="http://www.gnu.org/software/gzip/gzip.htm">gzip</a>
+          compressed archive.<br>
+          <br>
+          The input file name must be specified.</p>
+          </td>
+          <td valign="top" width="15%">&nbsp;jok.zip</td>
+        </tr>
+        <tr>
+          <td valign="top" width="21%">dataformat</td>
+          <td valign="top" width="64%">
+          <p>Format of the input data.<br>
+          <br>
+          Valid values are:<br>
+          SBCSV = <a href="./formathelp/csv.shtml">Splitsbrowser comma separated values</a><br>
+          SIHTML = <a href="./formathelp/sihtml.shtml">SportIdent HTML format from OE2000 or MT2000</a><br>
+          SICSV = <a href="./formathelp/sicsv.shtml">SportIdent CVS file format</a></p>
+          <p>The data format must be specified.</p>
+          </td>
+          <td valign="top" width="15%">SICVS</td>
+        </tr>
+        <tr>
+          <td valign="top" width="21%">color1</td>
+          <td valign="top" width="64%">Color of the first stripe on the progress-o-gram.</td>
+          <td valign="top" width="15%">CBF5FF</td>
+        </tr>
+        <tr>
+          <td valign="top" width="21%">color2</td>
+          <td valign="top" width="64%">Color of the second stripe on the progress-o-gram.</td>
+          <td valign="top" width="15%">D8DCFF</td>
+        </tr>
+        <tr>
+          <td valign="top" width="21%">graphbackground</td>
+          <td valign="top" width="64%">Background color for the progress-o-gram.</td>
+          <td valign="top" width="15%">99CCFF</td>
+        </tr>
+        <tr>
+          <td valign="top" width="21%">backgroundcolor</td>
+          <td valign="top" width="64%">Color of background of the applet.</td>
+          <td valign="top" width="15%">3399FF</td>
+        </tr>
+        <tr>
+          <td height="59" valign="top">language</td>
+          <td valign="top">Language to use for display text. <br>
+          The default is to use the browser's language.</td>
+          <td valign="top">en</td>
+        </tr>
+        <tr>
+          <td height="59" valign="top">thinline</td>
+          <td valign="top">
+          <p>Render results with a thin line.<br>
+          1 for thick lines (default)<br>
+          0 for thin lines</p>
+          </td>
+          <td valign="top">1</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </td>
+  </tr>
+</table>
+
+<!--#include virtual="footer.inc" -->
+
+</body>
+
+</html>

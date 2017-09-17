@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>SplitsBrowser development</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta
+  content="SplitsBrowser, orienteering, split times, SportIdent, Emit, splits, graph, epunching, results"
+  name="keywords">
+
+<link rel="stylesheet" type="text/css" href="../sbstyles.css">
+</head>
+
+<body vlink="#000066" link="#cc6600" bgcolor="#ffffff" leftmargin="0" topmargin="0" marginwidth="0"
+  marginheight="0">
+  
+<!--#include virtual="header.inc" -->
+<table border="0" cellpadding="0" cellspacing="0" width="550">
+  <tr>
+    <td width="20"></td>
+    <td>
+    <h1>Development</h1>
+    <p>SplitsBrowser is an open source Java Applet to view the results of orienteering events.</p>
+
+    <p>The code is freely available for non-commercial use under the <a
+      href="http://www.gnu.org/copyleft/gpl.html#SEC1">GPL licence</a>. This allows modification and
+    redistribution of the source subject to the redistributed source also being made avaliable under
+    a GPL licence agreement.</p>
+    <p>Source code is available as follows:</p>
+    <ul>
+      <li><a href="releases/splitsbrowsersrc.zip">Current release (2.1.3)</a></li>
+      <li><a href="releases/splitsbrowsersrc.zip">1.05 (Old style SplitsBrowser)</a></li>
+    </ul>
+    <p>There is also an associated server side application written in php4 to allow organisers to
+    submit results but no source has yet been released for this.</p>
+
+    <h2>Possible extensions</h2>
+    <ul>
+      <li>Rewrite/refractor - The quality of the current code leaves a lot to be desired. The
+      SplitsGraph and ControlCollection and SelectedResults classes are prime candidates to be
+      refactored.</li>
+      <li>Map view to show courses and/or reconstructions.</li>
+      <li>Statistics view showing which controls people lost time etc.</li>
+      <li>Add import filter for IOF results format.</li>
+    </ul>
+    </td>
+  </tr>
+</table>
+<!--#include virtual="footer.inc" -->
+</body>
+</html>

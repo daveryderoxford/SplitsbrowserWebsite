@@ -1,0 +1,737 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Creating a SportIdent HTML output file</title>
+<link rel="stylesheet" type="text/css" href="../sbstyles.css">
+</head>
+
+<body>
+
+<h3>Emit eTiming n3Sport csv format</h3>
+<h2>Create a file using eTiming</h2>
+This format has not been implemented yet.<br>
+For further information of the emit eTiming format may be found <a href="http://www.n3sport.com/orienteering/wrl/iof_results_format.htm">here</a>
+<h2>Format defintion</h2>
+The file format was defined in conjunction with early incarnations of the IOF ranking system starting in 1998. The format is simple and can easily be made as a report in the different computer-programs that the organizers use for the races.
+<p>It is based on a regular ASCII-file with lines containing comma-separated fields. Each line starting with a code telling the type of the line. The file format today includes these five line-types:</p>
+Raceheader - This line should contain information about the race<br>
+Classheader - This line should contain information about the class<br>
+Competitorinfo - This line includes all information about a single competitor<br>
+Splittimes - This line should contain all split times for the competitor if split times is used<br>
+Endrecord - Record to confirm that this is the end of the file (in case some of the file will be lost during transfer)<br>
+<br>
+The file should always start with a Raceheader. After the racehader there will be a number of classheaders, each followed by the Competitorinfo of each competitor in this class. If Split times is used a Splittime-record should follow directly after the Competitorinfo-record.<br>
+<br>
+Example:
+<pre>
+  RaceHeader
+  ClassHeader
+  Competitornfo
+  Splittimes (optional)
+  Competitorinfo
+  Splittimes (optional)
+  Competitorinfo
+  Splittimes (optional)
+  ...
+  ClassHeader
+  Splittimes (optional)
+  Competitorinfo
+  Splittimes (optional)
+  Competitorinfo
+  Splittimes (optional)
+  ...
+  ... (more classes)
+  Endrecord
+</pre>
+<h3>The lines in the file</h3>
+<p>RaceHeader</p>
+<p align="right">&nbsp;
+<table cellspacing="1" cellpadding="4" width="583" border="1">
+   <tbody>
+      <tr>
+         <td valign="top" width="13%" height="15"><b><i>
+            <p>Name</i></b></p>
+         </td>
+         <td valign="top" width="11%" height="15"><b><i>
+            <p>Optional</i></b></p>
+         </td>
+         <td valign="top" width="53%" height="15"><b><i>
+            <p>Explanation</i></b></p>
+         </td>
+         <td valign="top" width="22%" height="15"><b><i>
+            <p>Example</i></b></p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="13%" height="15">
+            <p>R</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>No</p>
+         </td>
+         <td valign="top" width="53%" height="15">
+            <p>Shows that this is a RaceHeader</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>R</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="13%" height="15">
+            <p>File<br>
+            Version</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>No</p>
+         </td>
+         <td valign="top" width="53%" height="15">
+            <p>A version number for the format in this file. This first version of the file format is 1.</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>1</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="13%" height="15">
+            <p>Racename</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>No</p>
+         </td>
+         <td valign="top" width="53%" height="15">
+            <p>Name of the race enclosed with &quot;&quot;.</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>&quot;Vaarspretten&quot;</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="13%" height="15">
+            <p>Organizer</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>No</p>
+         </td>
+         <td valign="top" width="53%" height="15">
+            <p>Organizer of the race (if many, separate them with comma) enclosed with &quot;&quot;</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>&quot;Halden Skiklubb&quot; or &quot;Nydalen Skiklubb, Oppsal IF&quot;</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="13%" height="15">
+            <p>Date</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>No</p>
+         </td>
+         <td valign="top" width="53%" height="15">
+            <p>Dato of race (MM-DD-YYYY)</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>06-24-1998</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="13%" height="15">
+            <p>Country</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>No</p>
+         </td>
+         <td valign="top" width="53%" height="15">
+            <p>Country of race. IOF Country codes (USA, CAN, IRE, NOR)</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>GBR</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="13%" height="15">
+            <p>SplitTimes</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="53%" height="15">
+            <p>Show if this race has split times (Y for Yes and N for No)</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>Y</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="13%" height="15">
+            <p>System<br>
+            Number</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="53%" height="15">
+            <p>Gives the official number of the racesystem, given to the developers by IOF.</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>43</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="13%" height="15">
+            <p>System<br>
+            Version</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="53%" height="15">
+            <p>Gives the version of the racesystem enclosed with &quot;&quot;.</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>&quot;2.30&quot;</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="13%" height="15">
+            <p>Race Type</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="53%" height="15">
+            <p>Identifies the type of race:</p>
+            <p>I - Individual race (Default)</p>
+            <p>M - Mass start</p>
+            <p>C - Chase start</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>M</p>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<p>ClassHeader</p>
+<p align="right">&nbsp;
+<table cellspacing="1" cellpadding="4" width="618" border="1">
+   <tbody>
+      <tr>
+         <td valign="top" width="17%" height="15"><b><i>
+            <p>Name</i></b></p>
+         </td>
+         <td valign="top" width="11%" height="15"><b><i>
+            <p>Optional</i></b></p>
+         </td>
+         <td valign="top" width="51%" height="15"><b><i>
+            <p>Explanation</i></b></p>
+         </td>
+         <td valign="top" width="21%" height="15"><b><i>
+            <p>Example</i></b></p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>C</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>No</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Shows that this is a ClassHeader</p>
+         </td>
+         <td valign="top" width="21%" height="15">
+            <p>C</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>Classname</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>No</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Name of the class enclosed with &quot;&quot;.</p>
+         </td>
+         <td valign="top" width="21%" height="15">
+            <p>&quot;H 21 A&quot;<br>
+            &quot;M 21 A&quot;</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>Length</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Length of race in km.</p>
+         </td>
+         <td valign="top" width="21%" height="15">
+            <p>10.3</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>RankingClass</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>If ranking then this is the ranking class (M21 and F21 this year) enclosed with &quot;&quot;.</p>
+         </td>
+         <td valign="top" width="21%" height="15">
+            <p>&quot;M21&quot;</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>NumOfControls</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Number of controls in class</p>
+         </td>
+         <td valign="top" width="21%" height="15">
+            <p>18</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>Climb</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Climb in race in meters.</p>
+         </td>
+         <td valign="top" width="21%" height="15">
+            <p>145</p>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<p>CompetitorInfo</p>
+<p align="right">&nbsp;
+<table cellspacing="1" cellpadding="4" width="614" border="1">
+   <tbody>
+      <tr>
+         <td valign="top" width="17%" height="15"><b><i>
+            <p>Name</i></b></p>
+         </td>
+         <td valign="top" width="11%" height="15"><b><i>
+            <p>Optional</i></b></p>
+         </td>
+         <td valign="top" width="51%" height="15"><b><i>
+            <p>Explanation</i></b></p>
+         </td>
+         <td valign="top" width="22%" height="15"><b><i>
+            <p>Example</i></b></p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>I</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>No</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Shows that this is CompetitorInfo</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>I</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>Place</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Competitors place in race</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>12</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>FirstName</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>No</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Competitors first name</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>&quot;Erik&quot;</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>LastName</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>No</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Competitors last name</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>&quot;Skaug&quot;</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>TotalTime</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Total time of the competitor. On the format hh:mm:ss or mmm:ss</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>1:15:05 or<br>
+            75:05</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>Status</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>C - Completed (Default)<br>
+            DNF - Did not Finnish<br>
+            DQ - Disqualified<br>
+            DNS - Did Not Start</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>DNF</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>Club</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Competitors club</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>&quot;Oppsal IF&quot;</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>Country</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Country of competitor. IOF Country codes (USA, CAN, IRE, NOR)</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>NOR</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>RankingNr</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>If not Ranking-class</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>If this class is ranking class, this field must be filled with the ranking number. RangingNr is Country-code together with the ranking-number of the country (if a national system exists). Example: NOR00023, SWE00212.</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>NOR000023 or GBR212003</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>BirthYear</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Birth year of competitor (YYYY)</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>1969</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>BirthDate</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Birth date of competitor (MM-DD-YYYY)</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>05-24-1969</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>StartTime</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Start time of competitor. On the format hh.mm.ss or mmm.ss. Must be included to get a Pursuit-graph. (24 hour format.)</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>13:34:00 or<br>
+            154:00</p>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<p>SplitTimes</p>
+<p align="right">&nbsp;
+<table cellspacing="1" cellpadding="4" width="614" border="1">
+   <tbody>
+      <tr>
+         <td valign="top" width="17%" height="15"><b><i>
+            <p>Name</i></b></p>
+         </td>
+         <td valign="top" width="11%" height="15"><b><i>
+            <p>Optional</i></b></p>
+         </td>
+         <td valign="top" width="51%" height="15"><b><i>
+            <p>Explanation</i></b></p>
+         </td>
+         <td valign="top" width="22%" height="15"><b><i>
+            <p>Example</i></b></p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>S</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>No</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Shows that this is a SplitTime</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>S</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>ControlNumber</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Number of control</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>1</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>PassingTime</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Split time on control from start. On the format hh:mm:ss or mmm:ss</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>1:04</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>ControlNumber</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Number of control</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>2</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>PassingTime</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Split time on control from start. On the format hh:mm:ss or mmm:ss</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>4:23</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>ControlNumber</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Number of control</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>3</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>PassingTime</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>Yes</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Split time on control from start. On the format hh:mm:ss or mmm:ss</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>6:59</p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>…..(etc.)</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p></p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p></p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p></p>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<p>EndRecord</p>
+<p align="right">&nbsp;
+<table cellspacing="1" cellpadding="4" width="614" border="1">
+   <tbody>
+      <tr>
+         <td valign="top" width="17%" height="15"><b><i>
+            <p>Name</i></b></p>
+         </td>
+         <td valign="top" width="11%" height="15"><b><i>
+            <p>Optional</i></b></p>
+         </td>
+         <td valign="top" width="51%" height="15"><b><i>
+            <p>Explanation</i></b></p>
+         </td>
+         <td valign="top" width="22%" height="15"><b><i>
+            <p>Example</i></b></p>
+         </td>
+      </tr>
+      <tr>
+         <td valign="top" width="17%" height="15">
+            <p>E</p>
+         </td>
+         <td valign="top" width="11%" height="15">
+            <p>No</p>
+         </td>
+         <td valign="top" width="51%" height="15">
+            <p>Shows that this is an EndRecord</p>
+         </td>
+         <td valign="top" width="22%" height="15">
+            <p>E</p>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<b><i>
+<p>National characters</p>
+</i></b>
+<p>In different european countries we each have our own ASCII-set. We do have the possibility to use Unicode, an international character set, but this would probably be too complicated. We therefore will discard all characters except from A-Z, 1-9, and special characters like comma, line etc. The system that makes the files should therefore replace alle national characters with characters between A and Z. (In Norway for instance we usually replace our &quot;å&quot; with &quot;aa&quot;, our &quot;ø&quot; with &quot;oe&quot; and our &quot;æ&quot; with &quot;ae&quot;.) This is not a perfect
+solution, but it will do the job.</p>
+<p>File Examples</p>
+<p>This file is an example from a competition with 2 classes and 6 competitors. Split times is used, and the race is an IOF Ranking race.</p>
+<pre>
+R,1,&quot;O-Festivalen 1998 - Classic&quot;,&quot;Oppsal IF&quot;,06-26-1998,NOR,Y,43,&quot;2.30&quot;
+C,&quot;H 21 A&quot;,10.3,&quot;M21&quot;,11,145
+I,1,&quot;Bent Erik&quot;,&quot;Skaug&quot;,&quot;Oppsal IF&quot;,1:15:03,C,NOR,NOR000023,1969,05-24-1969,13:34:00
+S,1,1:04,2,3:04,3,5:45,4,7:34,6,10:03,7,30:30,8,45:57,9,56:28,10,57:59,11,1:14:03
+I,2,&quot;Magne&quot;,&quot;Brekke&quot;,&quot;Lillomarka O-lag&quot;,1:20:03,C,NOR,NOR000027,1965,08-14-1965,13:37:00
+S,1,1:04,2,3:04,3,5:45,4,7:34,6,10:03,7,30:30,8,45:57,9,56:28,10,57:59,11,1:14:03
+I,3,&quot;Vebjoern&quot;,&quot;Berre&quot;,&quot;Fossum IF&quot;,1:27:56,C,NOR,NOR000037,1968,11-12-1968,11:42:00
+S,1,1:04,2,3:04,3,5:45,4,7:34,6,10:03,7,30:30,8,45:57,9,56:28,10,57:59,11,1:14:03
+I,4,&quot;Olav&quot;,&quot;Nedrelid&quot;,&quot;Oppsal IF&quot;,,DNF,NOR,NOR000049,1969,07-15-1969,12:01:00
+S,1,1:04,2,3:04,3,5:45,4,7:34,6,10:03,7,30:30,8,45:57,9,56:28,10,57:59,11,1:14:03
+C,&quot;D 21 A&quot;,7.9,&quot;W21&quot;,8,247
+I,1,&quot;Hanne&quot;,&quot;Sandstad&quot;,&quot;Baekkelagets Sp.Kl.&quot;,55:13,C,NOR,NOR000002,1969,09-24-1969,13:14:30
+S,1,1:04,2,3:04,3,5:45,4,7:34,6,10:03,7,30:30,8,54:02
+I,2,&quot;Hanne&quot;,&quot;Staff&quot;,&quot; Baekkelagets Sp.Kl.&quot;,57:01,C,NOR,NOR000004,1971,08-14-1971,13:16:30
+S,1,1:04,2,3:04,3,5:45,4,7:34,6,10:03,7,30:30,8,54:02
+E
+</pre>
+If split times where not to be used, the file could look like this:
+<pre>
+R,1,&quot;O-Festivalen 1998 - Classic&quot;,&quot;Oppsal IF&quot;,06-26-1998,NOR
+C,&quot;H 21 A&quot;,10.3,&quot;M21&quot;,11,945
+I,1,&quot;Bent Erik&quot;,&quot;Skaug&quot;,&quot;Oppsal IF&quot;,1:15:03,C,NOR,NOR000023,1969,05-24-1969,13:34:00
+I,2,&quot;Magne&quot;,&quot;Brekke&quot;,&quot;Lillomarka O-lag&quot;,1:20:03,C,NOR,NOR000027,1965,08-14-1965,13:37:00
+I,3,&quot;Vebjoern&quot;,&quot;Berre&quot;,&quot;Fossum IF&quot;,1:27:56,C,NOR,NOR000037,1968,11-12-1968,11:42:00
+I,4,&quot;Olav&quot;,&quot;Nedrelid&quot;,&quot;Oppsal IF&quot;,,DNF,NOR,NOR000049,1969,07-15-1969,12:01:00
+C,&quot;D 21 A&quot;,7.9,&quot;W21&quot;,8,247
+I,1,&quot;Hanne&quot;,&quot;Sandstad&quot;,&quot;Baekkelagets Sp.Kl.&quot;,55:13,C,NOR,NOR000002,1969,09-24-1969,13:14:30
+I,2,&quot;Hanne&quot;,&quot;Staff&quot;,&quot; Baekkelagets Sp.Kl.&quot;,57:01,C,NOR,NOR000004,1971,08-14-1971,13:16:30
+E
+</pre>
+Although one of the to types of files above will be typically, a file with an absolute minimum of required information would look like:
+<pre>
+R,1,&quot;O-Festivalen 1998 - Classic&quot;,&quot;Oppsal IF&quot;,06-26-1998,NOR
+C,&quot;H 21 A&quot;
+I,,&quot;Bent Erik&quot;,&quot;Skaug&quot;,&quot;Oppsal IF&quot;,1:15:03
+I,,&quot;Magne&quot;,&quot;Brekke&quot;,&quot;Lillomarka O-lag&quot;,1:20:03
+I,,&quot;Vebjoern&quot;,&quot;Berre&quot;,&quot;Fossum IF&quot;,1:27:56
+I,,&quot;Olav&quot;,&quot;Nedrelid&quot;,&quot;Oppsal IF&quot;,,DNF
+C,&quot;D 21 A&quot;
+I,,&quot;Hanne&quot;,&quot;Sandstad&quot;,&quot;Baekkelagets Sp.Kl.&quot;,55:13
+I,,&quot;Hanne&quot;,&quot;Staff&quot;,&quot; Baekkelagets Sp.Kl.&quot;,57:01
+E
+</pre>
+This file is so simple that the different systems shouldn't require to much modifications.<br>
+(Take notice of the Place-field of each CompetitorInfo-line, if place is omitted, the field must still be representet with an extra comma. The Status-field is also omitted in one line.)
+
+<p><a href="index.html">Return to all formats</a></p>
+
+</body>
+
+</html>

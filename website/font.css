@@ -1,0 +1,95 @@
+@charset "utf-8";
+/* 
+##################
+#   DEFAULTS     #
+##################
+*/
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	color: #333333;
+	font-size: 77%;
+	line-height: 1.3em;	
+	margin: 0 auto 0 auto;
+	width: 956px;
+	padding:0;
+	background: url(img/body_bg.gif) #f3f3f3 scroll 0%;
+	background-repeat:repeat ;
+
+}
+	a:link, a:visited{
+		color: #333333;
+	}
+	a:hover, a:active {
+		color: #ff9900;
+	}
+	a,
+	img {
+	    outline: none;
+	    border: 0;
+	}	
+  h1, h2, h3, h4 {
+		font-size: 1.9em;
+		font-weight: normal;
+		margin: 0;
+		padding: 12px 0 4px 2px;
+	}
+		h2 {
+			font-size: 1.6em;
+		}
+		h3 {
+			font-size: 1.5em;
+			font-weight: bold;
+			color: #3945A4;
+		}
+		  h3 a { color: #3945A4 !important; text-decoration:none; }
+		  h3 a:hover { color: #FF9900 !important; }
+		h4 {
+			font-size: 1.2em;
+		}		
+	p {
+		padding: 5px 0 5px 0;
+		margin: 0;
+	}
+	strong,
+	strong a {
+		color: #333333 !important;
+		text-decoration: none;
+	}
+	fieldset {
+		border: 0;
+		margin: 0;
+		padding: 0;
+	}
+		legend {
+			display: none;
+		}
+
+/* 
+##############
+#   FORMS    #
+##############
+*/
+	form {
+		padding: 0;
+		margin: 0;
+	}
+	label.title {
+		float: left;
+		width: 130px;
+		margin: 4px 10px 0 0;
+	}
+	input, 
+	textarea, 
+	file, 
+	select {		
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		font-size: 0.9em !important;
+		font-weight: normal !important;
+		color: #000000;
+		margin: 0;
+		padding: 1px;
+		outline: none;
+	}
+	select {
+		margin: 6px 0 0 0;
+	}

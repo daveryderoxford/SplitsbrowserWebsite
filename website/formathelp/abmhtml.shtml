@@ -1,0 +1,13 @@
+
+<head>
+<title>Splitsbrowser - ABM HTML format</title>
+<link rel="stylesheet" type="text/css" href="../sbstyles.css">
+</head>
+
+<body>
+
+<h3>ABM HTML format</h3>
+ABM is a program for managing orienteering enteries and results written by <a href=GavinAndrews@yahoo.com>Gavin Smith</a>. 
+It includes support for SportIdent electronic punching system and is currently under development within South London Orienteers (SLOW) in Great Britain.
+
+<p><a href="index.html">Return to all formats</a></p>

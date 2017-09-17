@@ -1,0 +1,57 @@
+<html>
+
+<head>
+<title>Organisers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta
+  content="Splitsbrowser, orienteering, split times, SportIdent, Emit, splits, graph, epunching, results"
+  name="keywords">
+
+<link rel="stylesheet" type="text/css" href="../sbstyles.css">
+
+</head>
+
+<body vlink="#000066" link="#cc6600" bgcolor="#ffffff" leftmargin="0" topmargin="0" marginwidth="0"
+  marginheight="0">
+
+<!--#include virtual="header.inc" -->
+<table border="0" cellpadding="0" cellspacing="0" width="580">
+  <tr>
+    <td width="20"></td>
+    <td>
+    <h1>Organisers</h1>
+    <h2>Submitting results to Splitsbrowser</h2>
+    <p>1. Prepare results data file in one of the following formats.</p>
+    <dir>
+      <p><a href="formathelp/sicsv.shtml">SportIdent CSV format</a><br>
+      Comma separated variable file output form SportIdent OE/MT program. This is the preferred
+      format for SportIdent results. It includes start times which the are not generally present in
+      the SportIdent HTML output files.</p>
+      <p><a href="formathelp/sihtml.shtml">SportIdent HTML format</a><br>
+      Use this format for SportIdent results when CSV format results are not available. There are
+      many variations to the layout of these results which means that it is not always read
+      reliably. In particular if club names start with a number the file is not read correctly.</p>
+      <p><a href="formathelp/csv.shtml">Splitsbrowser comma separated variable format</a><br>
+      A simple comma separated variable format retained principally for compatibility with previous
+      versions of Splitsbrowser.</p>
+    </dir>
+    <dir></dir>
+    2. Upload the results to the Splitsbrowser web site using the form <a href="addevent.php">here</a>.
+    <p>3. Check that the resulting entry is correct. Any error may be corrected from the <a
+      href="EventSwitchBoard.php">Event Admin page</a> in the ways decribed below.</p>
+    <h2>Editing submitting results</h2>
+    Submitted event data may be edited, replacement results uploaded or the complete event deleted
+    from the <a href="EventSwitchBoard.php">Event Admin page</a>.
+
+    <h2>Using Splitsbrowser applet on your site&nbsp;</h2>
+    <p>For those that do not wish to upload their results onto the Splitsbrowser web site then it is
+    possible to deploy Splitsbrowser on your own site given some familiarity with HTML. Instructions
+    as to how to do this are given <a href="applethelp.shtml">here</a>.&nbsp;&nbsp;</p>
+    </td>
+  </tr>
+</table>
+<!--#include virtual="footer.inc" -->
+
+</body>
+
+</html>

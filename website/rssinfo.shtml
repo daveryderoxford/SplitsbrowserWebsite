@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Splitsbrowser RSS information</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta
+    content="Splitsbrowser, orienteering, split times, SportIdent, Emit, splits, graph, epunching, results"
+    name="keywords">
+<meta content="Splitsbrowser" name="description">
+<link rel="stylesheet" type="text/css" href="../sbstyles.css">
+</head>
+<body vlink="#000066" link="#cc6600" bgcolor="#ffffff" leftmargin="0"
+    topmargin="0" marginwidth="0" marginheight="0">
+<!--#include virtual="header.inc" -->
+<table border="0" cellpadding="0" cellspacing="0" width="580">
+    <tr>
+        <td width="30" bgcolor="#CCCCCC">&nbsp;</td>
+        <td width="30"></td>
+        <td>
+        <div style="width: 500;">
+        <h1>RSS Feed</h1>
+        <p>RSS (which stands for Really Simple Syndication) is a system
+        providing regular news updates from web sites without the need to visit
+        the  web sites directly.</p>
+        <p>Whenever content is added to a site, the web site compiles a list of
+        recently changed items that it provides as a file which is read by a
+        RSS Reader program. You have to give this program the URL for each news
+        feed file and how often you want it to be checked.</p>
+        <p>
+        The Splitsbrower RSS feed carries results added to splitsbrowser in the last 3 weeks is located at 
+        &nbsp;&nbsp;<b> http://www.splitsbrowser.org.uk/rss.php</b>
+       </p>
+        <p>The feed has been tested on the following these free readers:</p>
+        <ul>
+            <li><a target="_blank" href="http://www.activerefresh.com">Active
+            Refresh</a> (specific RSS Reader)</li>
+            <li><a target="_blank" href="http://www.rssbandit.org">RSS Bandit</a>
+            (specific RSS Reader)</li>
+            <li><a target="_blank" href="http://www.sharpreader.net">Sharp
+            Reader</a> (specific RSS Reader)</li>
+            <li><a target="_blank" href="http://sage.mozdev.org">Sage</a>
+            (extension to FireFox)</li>
+            <li><a target="_blank"
+                href="http://www.mozilla.org/products/thunderbird">Thunderbird</a>
+            (eMail, newsgroup and RSS reader)</li>
+        </ul>
+        <p>There are many other RSS readers available - just search with Google.
+        Some are specific to operating system - sorry, we have been unable to
+        check any for Mac or Linux yet.</p>
+        <p>Methods of providing URL differ, but you can cut and paste or right
+        click/copy link. Some readers recognise the contents of the clipboard as
+        a link, and will already have pasted it in when you ask for a new feed.
+        </p>
+        </div>
+        </td>
+    </tr>
+</table>
+<!--#include virtual="footer.inc" -->
+</body>
+</html>

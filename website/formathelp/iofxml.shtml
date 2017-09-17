@@ -1,0 +1,26 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>SportIdent CSV file format help</title>
+
+<link rel="stylesheet" type="text/css" href="../sbstyles.css">
+</head>
+
+<body>
+
+<h3>IOF standard XML results format</h3>
+
+The IOF XML standard results format is a 
+
+for the interchange of information relating to orienteering events.
+
+Support for it is currently being added to splitsbrowser.
+
+<p><A href="http://www.soenniksen.dk/iof-datastandard/index.shtml" >Format definition</a></p>
+
+<p><a href="index.html">Return to all formats</a></p>
+
+</body>
+
+</html>

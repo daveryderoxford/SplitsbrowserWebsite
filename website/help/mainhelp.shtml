@@ -1,0 +1,191 @@
+<html>
+<head>
+<title>Splitsbrowser User Helpt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta
+  content="SplitsBrowser, orienteering, split times, SportIdent, Emit, splits, graph, epunching, results"
+  name="keywords">
+
+<link rel="stylesheet" type="text/css" href="http://splitsbrowser.org.uk/sbstyles.css">
+</head>
+
+<body vlink="#000066" link="#cc6600" bgcolor="#ffffff" leftmargin="0" topmargin="0" marginwidth="0"
+  marginheight="0">
+
+<!--#include virtual="../header.inc" -->
+
+<br>
+<table border="0">
+  <tr>
+    <td width="20"></td>
+    <td>
+    <h1>Features</h1>
+
+    <table border="0">
+      <tbody>
+        <!-- Splits graph  -->
+        <tr valign="top" align="center">
+          <td width="330"><a href="./images/splitsgraph.gif"> <img border="0" valign="top"
+            src="./images/splitsgraph_small.gif" alt="Screenshot of splits graph"> </a>
+          <p class="smallhighlighted">Left mouse - Fastest 10 splits on selected course<br>
+          Right mouse - Fastest splits for each class doing leg<br>
+          Mouse in top axis - All legs from selected control<br>
+          </p>
+          </td>
+
+          <td align="left">
+          <h3 id="SplitsView">Splits graph</h3>
+          The Splits Graph highlights time loss on individual legs and allows split times to be
+          compared between runners.
+          <p>The X axis shows a representative total time for each control. The Y axis shows the
+          competitor's cumulative time lost compared to a specified optimum time. The optimum time
+          may be: <br>
+          <img src="images/arrow_small.gif" width="6" height="11" valign="top" alt=""> the fastest
+          time for the leg (the default)<br>
+          <img src="images/arrow_small.gif" width="6" height="11" valign="top" alt=""> the fastest
+          time plus a percentage<br>
+          <img src="images/arrow_small.gif" width="6" height="11" valign="top" alt=""> the winners
+          time or the time of any individual runner<br>
+          </p>
+
+          <p>A vertical black line indicates the currently selected control. <a
+            href="#RunnerAnnotation">Runner annotation</a> to the right of the graph displays the
+          runners name and data for the currently selected control.</p>
+
+          <p>Popup windows display the fastest split times for the selected courses (left mouse) and
+          fastest leg time for all classes that included the leg (right mouse).</p>
+
+          <p></p>
+          </td>
+        </tr>
+        <!-- End of splits graph-->
+        <!-- Separator row -->
+        <tr>
+          <td><br>
+          <br>
+          </td>
+        </tr>
+        <!-- End of separator row -->
+
+        <!-- Race graph  -->
+        <tr valign="top">
+          <td width="330"><a href="./images/racegraph2.gif"> <img border="0" valign="top"
+            src="./images/racegraph2_small.gif" alt="Screenshot of race graph"> </a>
+          <p class="smallhighlighted">Any mouse - Competitors passing control +/- 2 minutes of mouse
+          position<br>
+          </p>
+          </td>
+          <td align="left">
+          <p></p>
+          <h3 id="RaceView">Race graph</h3>
+          <p>The Race Graph is a real-time view that identifies who was running with who and how
+          groups form and split up as the race progresses.</p>
+          <p>The X axis shows a representative total time for each control. The Y axis shows the
+          competitors total time minus the optimum time at each control. This view is not available
+          if the results do not contain start time data.</p>
+          <p>A popup window (left or right mouse button) displays all competitors passing through a
+          control two minutes either side of the current mouse position.</p>
+
+          <p>When only one runner is selected the 'Crossing runners' button is enabled. This
+          automatically selects all runners that passed or were passed by the selected runner.</p>
+          </td>
+        </tr>
+        <!-- End of race graph -->
+        <!-- Separator row -->
+        <tr>
+          <td><br>
+          <br>
+          </td>
+        </tr>
+        <!-- End of separator row -->
+
+        <!-- Results table view -->
+        <tr valign="top">
+          <td width="330"><a href="./images/results.gif"> <img border="0" valign="top"
+            src="./images/results_small.gif" alt="Screenshot of text results display"> </a></td>
+          <td align="left">
+          <p></p>
+          <h3><a name="TableView">Results table</a></h3>
+          The results table displays a simple table of results - enough said!
+          <p></p>
+          </td>
+        </tr>
+        <!-- End of results table view  -->
+      </tbody>
+    </table>
+
+    <h3 id="CourseClass">Course/Class selection</h3>
+    <p>The class to view may be selected from the class dropdown. Other classes running the course
+    are displayed in the course checkbox next to the class dropdown. These may be included in the
+    displayed results by single clicking on them.</p>
+
+    <p></p>
+
+    <h3 id="RunnerAnnotation">Runner annotation</h3>
+    <p>The runner annotation is displayed to the right of the both the splits and race graph. It
+    identifies the runner by name and optionally includes the following data for the selected
+    control:<br>
+    <img src="images/arrow_small.gif" width="6" height="11" valign="top" alt=""> total time to
+    control and position<br>
+    <img src="images/arrow_small.gif" width="6" height="11" valign="top" alt=""> split time for the
+    leg and leg position<br>
+    <img src="images/arrow_small.gif" width="6" height="11" valign="top" alt=""> time behind the
+    fastest time<br>
+    <img src="images/arrow_small.gif" width="6" height="11" valign="top" alt=""> loss for leg
+    calculated as below<br>
+    The checkboxes to the bottom right of the window select the data values to display in the annotation.</p>
+
+    <p><i>Time Loss calculation</i></p>
+    <p>The time loss for each leg is estimated as follows:<br>
+    1. Calculate competitors rate of time loss for each leg compared the fastest time on the course
+    for the leg. <br>
+    (split(leg) - fastest(leg)) / fastest(leg) <br>
+    2. Find the median leg time loss rate for the competitor. Using the median means it will not be
+    influenced by large losses or short legs. <br>
+    3. Using this median loss rate calculate the target time for each control. <br>
+    4. Calculate loss based on this target time. <br>
+    </p>
+
+    <h1 id="HowDoI"">How do I</h1>
+
+    <p><b>Q - How long did I lose at control 3?</b><br>
+    A - In <a href="#SplitsView">Splits View</a> check that the 'Time loss' checkbox is selected in
+    the bottom right. Select your class and result and place the cursor on the required control. The
+    time loss is displayed in the <a href="./mainhelp.shtml#RunnerAnnotation">runner annotation</a>
+    to the right of the graph. The time loss is the last entry in the annotation.</p>
+
+    <p><b>Q - How does my run compare to my mates?</b><br>
+    A - In <a href="#SplitsView">Splits View</a> selecting both runners will give a direct
+    comparison. At any control the line on top will be the one that is ahead at that point. For each
+    control the line that slopes upwards more will be the faster split. For a more accurate
+    comparison use your time as the optimum by selecting 'Any runner' in the 'Compare with' and then
+    selecting yourself in competitor dropdown. Now your line will be horizontal. Any faster splits
+    than you will slope upwards and any slower ones downwards.</p>
+
+    <p><b>Q - Who has the fastest run-in split both overall and in my class?</b><br>
+    A - In <a href="#SplitsView">Splits View</a> place the mouse to the right of the 'Finish' leg.
+    Pressing the left mouse button will give the fastest competitors in your class. Pressing the
+    right button will display the fastest competitor in each class with the same last control.</p>
+
+    <p><b>Q - How long had I taken up to number 6?</b><br>
+    A - In <a href="#SplitsView">Splits View</a> check the 'Total time' checkbox on the bottom of
+    the graph. The runner annotation to the right of the graph will nor show the total time
+    immediately after the name. Move the move the mouse to the required control to display the total
+    time for the required leg.</p>
+
+    <p><b>Q - Who was running with me between controls 2 and 3?</b><br>
+    A - In <a href="#RaceView">Race View</a> clear all current selections and then select yourself.
+    Pressing the 'Crossing runners' button will select all runners that you passed/were passed by
+    you. Deselecting runners much slower then you will expand the scale if required.</p>
+
+    <p><b>Q - Who was that stunning blond/rugged M21 that I saw at control 2.</b><br>
+    A - In <a href="#RaceView">Race View</a> select yourself, place the mouse pointer at control two
+    at your time and press the left mouse button. The pop-up will display all competitors 2 passing
+    the control within 2 minutes of you.</p>
+
+    </td>
+  </tr>
+</table>
+</body>
+
+</html>

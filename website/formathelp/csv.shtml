@@ -1,0 +1,93 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Splitsbrowser CVS file format</title>
+
+<link rel="stylesheet" type="text/css" href="../sbstyles.css">
+
+</head>
+
+<body>
+
+<h3>CVS file format</h3>
+The Splitsbrowser CVS file format provides a simple format to allow easy submission of results using manual formatting.
+<br>
+<p>The data for each class is started with a header line and the end of the class
+in indicated by a blank line.&nbsp;&nbsp;<br>
+
+The class header line contains the following, comma separated fields.<br>
+
+<table cellspacing="1" cellpadding="3">
+  <tr>
+    <td class="tinyText">Name</td>
+    <td class="tinyText">Type</td>
+    <td class="tinyText">Description</td>
+  <tr>
+    <td >class name</td>
+    <td >String</td>
+    <td >Given name of competitor</td>
+  <tr>
+    <td>No of controls</td>
+    <td>Integer</td>
+    <td>Number of controls on the course</td>
+ </table>
+
+<p> 
+For each competitor in the class the following, comma separated, fields are
+required.
+</p>
+<table cellpadding="4" cellspacing="5">
+  <tr>
+    <td class="tinyText">Name</td>
+    <td class="tinyText">Type</td>
+    <td class="tinyText">Description</td>
+  </tr>
+  <tr>
+    <td>first name</td>
+    <td>String</td>
+    <td>Given name of competitor</td>
+  <tr>
+    <td>surname</td>
+    <td>String</td>
+    <td>Family name of competitor</td>
+  <tr>
+    <td>club</td>
+    <td>String</td>
+    <td>Short club name</td>
+  <tr>
+    <td valign="top">start time</td>
+    <td valign="top">hh:mm</td>
+    <td>Start time in hours and minutes<br>
+        If no start time is avaliable a time of 00:00 should be specified.</td>
+  <tr>
+    <td valign="top">split times</td>
+    <td valign="top">mmm:ss</td>
+    <td>The time taken for each leg in minutes and seconds. <br> 
+        A total of (number of controls+1) split times are required. <br>
+        If there is no valid time for the control a time of 00:00 should be specified.</td>
+</table>
+
+<p>String fields should not be quoted.&nbsp; If no value is available for a
+string field it may be left blank (,,). .<br>
+If no value is available for a time then 00:00 should be specified.<br>
+</p>
+<p>
+For example:</p>
+<pre>
+Long,5
+Matan,Naftali,Technion,09:01,2:19,1:48,1:34,1:49,2:40,1:22
+Tamir,Alon,Dan,09:00,2:21,3:12,1:43,2:47,1:21,1:24
+Daniel,Griff,Ramat,09:00,2:24,3:06,1:43,2:10,1:19,1:20
+
+Short,4
+Sergey,Cherniavsky,Galilee,09:00,2:19,1:48,1:34,1:49,2:40
+Avi,Melez,Ind,09:00,2:21,3:12,1:43,2:47,1:21
+Pavel,Levitsky,TAU,2:24,3:06,1:43,2:10,1:19
+</pre>
+
+<p><a href="index.html">Return to all formats</a></p>
+
+</body>
+
+</html>

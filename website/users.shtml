@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Splitsbrowser users</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta content="Splitsbrowser, orienteering, split times, SportIdent, Emit, splits, graph, epunching, results" name="keywords">
+<meta content="Splitsbrowser" name="description">
+<link rel="stylesheet" type="text/css" href="./sbstyles.css">
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"">
+
+<!--#include virtual="header.inc" -->
+
+Splitsbrowser users 
+<p>
+Hungary<br>
+http://lazarus.elte.hu/tajfutas/si/splits/splits2001.htm
+</p>
+
+<p>
+Isral<br>
+http://www.nivut.org.il/SplitsBrowser/  
+</p>
+
+<p>
+Japan<br> 
+http://orienteering.hoops.ne.jp/split/
+</p>
+
+<p>
+Hong Kong<br> 
+</p>
+
+<p>
+Belgium<br> 
+</p>
+
+<!--#include virtual="footer.inc" -->
+
+</BODY>
+</HTML> 
