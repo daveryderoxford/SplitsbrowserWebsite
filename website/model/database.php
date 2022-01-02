@@ -3,18 +3,17 @@ function eventDBConnect()
 {
  	error_reporting(63);
 	set_time_limit(3600); // 1 hour
+
+   $conId = mysql_pconnect("sql5c51a.megasqlservers.eu", "splitsbrow573561", "OrientDB7") or
+                                   die("Connection failed: " . mysql_error());   
  
-    $conId = mysql_pconnect("mysql66244.db.easily.co.uk", "mysql66244", "8rbHuHfmfQ73WRxf") or
-                                   die("Connection failed: " . mysql_error());
-    
-    //echo("Connected to server<BR>");
+    echo("Connected to server<BR>");
     
     if ($conId !=0) {
-        mysql_select_db("db66244", $conId) or
+        mysql_select_db("db66244_splitsbrowser_org_uk", $conId) or
                   die("Database selection failed" . mysql_error());
     }
-    
-    //echo("Opened database<BR>");
+
     return($conId);
 }
 
@@ -42,4 +41,3 @@ function nextRow (&$querresu) {
 function clearQuery ($querresu) {
 	mysql_free_result($querresu);
 }
-?>
