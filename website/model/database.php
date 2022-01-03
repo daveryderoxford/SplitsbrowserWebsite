@@ -4,30 +4,29 @@ function eventDBConnect()
  	error_reporting(63);
 	set_time_limit(3600); // 1 hour
 
-   $conId = mysql_pconnect("sql5c51a.megasqlservers.eu", "splitsbrow573561", "OrientDB7") or
-                                   die("Connection failed: " . mysql_error());   
- 
-    echo("Connected to server<BR>");
-    
-    if ($conId !=0) {
-        mysql_select_db("db66244_splitsbrowser_org_uk", $conId) or
-                  die("Database selection failed" . mysql_error());
-    }
+    $servername = "sql5c51a.megasqlservers.eu";  // server connect 
+    $username = ****See password manager****;
+    $password = ****See password manager****;
+    $database = "db66244_splitsbrowser_org_uk";
+  
+    // Create connection
+    $link =  mysqli_connect($servername, $username, $password, $database) or
+         die("Connection failed"); 
 
-    return($conId);
+    return($link);
 }
 
-function eventDBDisconnect($conId)
+function eventDBDisconnect($link)
 {
     //echo("Closing database<BR>");
-    mysql_close($conId);
+    mysqli_close($link);
 }
 
-function executeQuery($conId, &$queryresult, $querytext) {
+function executeQuery($link, &$queryresult, $querytext) {
 
-	$queryresult = mysql_query($querytext, $conId);
+	$queryresult = mysqli_query($link, $querytext);
 
- 	if (($queryresult != false) and (mysql_errno() == 0)) {
+ 	if (($queryresult != false) and (mysqli_errno($link) == 0)) {
 		return true;
 	} else {
 		return false;
@@ -35,13 +34,13 @@ function executeQuery($conId, &$queryresult, $querytext) {
 }
 
 function nextRow (&$queryresult) {
-	return mysql_fetch_array($queryresult);
+	return mysqli_fetch_array($queryresult);
 }
 
 function clearQuery ($queryresult) {
-	mysql_free_result($queryresult);
+	mysqli_free_result($queryresult);
 }
 
 function numRows(&$queryresult) {
-    return mysql_num_rows($queryresult);
+    return mysqli_num_rows($queryresult);
 }
