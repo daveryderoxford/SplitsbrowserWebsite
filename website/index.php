@@ -73,7 +73,7 @@ function makeResultsTable($queryresult) {
     global $EVENT_DATE_FIELD, $EVENT_NAME_FIELD, $EVENT_NATIONALITY_FIELD,
            $EVENT_CLUB_FIELD, $EVENT_ID_FIELD;
 
-    $num_rows = mysql_num_rows($queryresult);
+    $num_rows = numRows($queryresult);
 
     if ($num_rows==0) {
        $tableText= "<TR><TD class=error colspan=2>No events found<TD></TR>";

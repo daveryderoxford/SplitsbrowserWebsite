@@ -335,7 +335,7 @@ function getEvent($eventId, &$eventName){
     executeQuery($conId, $queryresult, $sql) or
        die("Unexpected error encountered executing query<BR>".$sql."<BR>");
    
-   $num_rows = mysql_num_rows($queryresult);
+   $num_rows = numRows($queryresult);
 
    if ($num_rows == 0)
    {
@@ -369,7 +369,7 @@ function getEventDetails($eventId, &$eventDetails) {
     executeQuery($conId, $queryresult, $sql) or
        die("Unexpected error encountered executing query<BR>".$sql."<BR>");
 
-	$num_rows = mysql_num_rows($queryresult);
+	$num_rows = numRows($queryresult);
 
 	/*Event not found.*/
 	if ($num_rows == 0)
@@ -406,7 +406,7 @@ function getFileFormat($eventId)
     executeQuery($conId, $queryresult, $sql) or
        die("Unexpected error encountered executing query<BR>".$sql."<BR>");
    
-   $num_rows = mysql_num_rows($queryresult);
+   $num_rows = numRows($queryresult);
 
    if ($num_rows == 0)
    {
@@ -439,7 +439,7 @@ function validateEventPassword($eventId, $password) {
     executeQuery($conId, $queryresult, $sql) or
        die("Unexpected error encountered executing query<BR>".$sql."<BR>");
 
-    $num_rows = mysql_num_rows($queryresult);
+    $num_rows = numRows($queryresult);
     if ($num_rows==0) {
       return(FALSE);
     }

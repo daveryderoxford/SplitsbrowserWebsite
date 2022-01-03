@@ -17,7 +17,7 @@ $ok = executeQuery($conId, $queryresult, $sql);
 
 if ($ok!=true) {
     print("Unexpected error encountered executing query<BR>");
-} else if (mysql_num_rows($queryresult)==0) {
+} else if (numRows($queryresult)==0) {
     print("Event ". $eventId . "Event not found in the database<BR>");
 } else {
   $row = nextRow($queryresult);

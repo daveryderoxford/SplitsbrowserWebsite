@@ -209,7 +209,7 @@ echo $HTML;
 
     // Print query boxes
 
-    $num_rows = mysql_num_rows($queryresult);
+    $num_rows = numRows($queryresult);
     if ($num_rows==0) {
        print ("<TR><TD class=error colspan=7>No events found matching specified criteria<TD></TR>");
     }

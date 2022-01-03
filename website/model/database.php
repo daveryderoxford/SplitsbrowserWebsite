@@ -34,10 +34,14 @@ function executeQuery($conId, &$queryresult, $querytext) {
 	}
 }
 
-function nextRow (&$querresu) {
-	return mysql_fetch_array($querresu);
+function nextRow (&$queryresult) {
+	return mysql_fetch_array($queryresult);
 }
 
-function clearQuery ($querresu) {
-	mysql_free_result($querresu);
+function clearQuery ($queryresult) {
+	mysql_free_result($queryresult);
+}
+
+function numRows(&$queryresult) {
+    return mysql_num_rows($queryresult);
 }

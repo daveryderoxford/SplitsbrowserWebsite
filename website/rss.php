@@ -15,7 +15,7 @@
  $ok = executeQuery($conId, $queryresult, $sql);
  
  if ($ok) {
-    $num_rows = mysql_num_rows($queryresult);
+    $num_rows = numRows($queryresult);
     for( $i=0; $i<$num_rows; $i++) {
         $row = nextRow($queryresult);
         writeItem($row);
@@ -42,7 +42,7 @@ function cleanString($s)
 	$s = str_replace('"', '&quot;', $s);
 	$s = str_replace('<',  '&lt;',  $s);
 	$s = str_replace('>',  '&gt;', $s);	
-    $s = str_replace('”',  '&#8221;', $s); 
+    $s = str_replace('пїЅ',  '&#8221;', $s); 
     
 	$s = cleanUTF8($s);
 	
@@ -60,7 +60,7 @@ Function cleanUTF8
 function cleanUTF8($string)
 {
 return strtr($string,
-  "???????ҐµАБВГДЕЖЗИЙКЛМНОПРСТУФХЦШЩЪЫЬЭЯабвгдежзийклмнопрстуфхцшщъыьэя",
+  "???????пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
   "SOZsozYYuAAAAAAACEEEEIIIIDNOOOOOOUUUUYsaaaaaaaceeeeiiiionoooooouuuuyy");
 } 
 
