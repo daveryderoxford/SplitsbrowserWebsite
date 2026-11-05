@@ -5,6 +5,8 @@ Reads energy/data/*.csv and energy/data/calendar.json. Writes:
 
 - energy/hourly_classified.csv
 - energy/monthly_load_by_class.csv
+- energy/monthly_total_load.csv
+- energy/top10pct_impact.csv
 - energy/left_on_runs.csv
 - energy/single_high_hours.csv
 - energy/training_on_quiet_days.csv
@@ -221,16 +223,18 @@ def round_kwh(value):
     return f"{value:.3f}"
 
 
-def top5_stats(values):
-    """Return (hours_removed, kwh_share, mean_of_the_rest).
+def top_slice(values, fraction):
+    """Split off the highest `fraction` of hours.
 
-    The share is the highest 5% of hours. Classes with at least five hours
-    drop at least one hour, so a short evening still shows its busiest hour.
+    Classes with at least five hours drop at least one hour, so a short
+    evening still shows its busiest hour. Returns None when there is nothing
+    to split off. The caller multiplies means by hours; the totals here are
+    the same as mean times duration.
     """
     count = len(values)
     if count == 0:
-        return 0, "", ""
-    drop = int(round(count * 0.05))
+        return None
+    drop = int(round(count * fraction))
     if count >= 5:
         drop = max(1, drop)
     if count > 1:
@@ -238,13 +242,28 @@ def top5_stats(values):
     else:
         drop = 0
     if drop <= 0:
-        return 0, "", ""
+        return None
     ordered = sorted(values, reverse=True)
     top = ordered[:drop]
     rest = ordered[drop:]
     total = sum(values)
-    share = (sum(top) / total) if total else 0.0
-    return drop, f"{share:.3f}", round_kwh(statistics.mean(rest))
+    return {
+        "top_hours": drop,
+        "top_total": sum(top),
+        "top_mean": statistics.mean(top),
+        "rest_hours": len(rest),
+        "rest_total": sum(rest),
+        "rest_mean": statistics.mean(rest),
+        "share": (sum(top) / total) if total else 0.0,
+    }
+
+
+def top5_stats(values):
+    """Return (hours_removed, kwh_share, mean_of_the_rest)."""
+    sliced = top_slice(values, 0.05)
+    if sliced is None:
+        return 0, "", ""
+    return sliced["top_hours"], f"{sliced['share']:.3f}", round_kwh(sliced["rest_mean"])
 
 
 def class_values(rows, month, class_name):
@@ -318,6 +337,95 @@ def summarise(rows, months):
                     record["mean_excluding_night_left_on"] = round_kwh(
                         statistics.mean(kept)
                     )
+            records.append(record)
+    return records
+
+
+def total_load(rows, months):
+    """Mean multiplied by hours, which is the kWh on the bill for that class.
+
+    Partition classes add up to the month. Evening parts and the overnight
+    slice are included so those rates can be scaled too, and are marked so
+    they are not added on top of the month.
+    """
+    records = []
+    for month in months:
+        month_rows = [row for row in rows if row["month"] == month]
+        month_total = sum(row["kwh"] for row in month_rows)
+        classes = list(PARTITION) + [
+            "month_total",
+            "wednesday_evening",
+            "trysail_evening",
+            "overnight_00_06",
+        ]
+        for class_name in classes:
+            if class_name == "month_total":
+                chosen = month_rows
+                counts_in_month = "yes"
+            else:
+                chosen = class_values(rows, month, class_name)
+                counts_in_month = "yes" if class_name in PARTITION else "no"
+            if not chosen:
+                continue
+            values = [row["kwh"] for row in chosen]
+            total = sum(values)
+            records.append(
+                {
+                    "month": month,
+                    "class": class_name,
+                    "counts_in_month_total": counts_in_month,
+                    "hours": len(values),
+                    "mean_kwh_per_hour": round_kwh(statistics.mean(values)),
+                    "median_kwh_per_hour": round_kwh(statistics.median(values)),
+                    "total_kwh": round_kwh(total),
+                    "share_of_month_kwh": (
+                        f"{(total / month_total):.3f}" if month_total else ""
+                    ),
+                }
+            )
+    return records
+
+
+def top10_impact(rows, months):
+    """Highest 10% of hours, set beside the rest, in kWh rather than rate."""
+    records = []
+    for month in months:
+        for class_name in CLASS_ORDER:
+            chosen = class_values(rows, month, class_name)
+            if not chosen:
+                continue
+            values = [row["kwh"] for row in chosen]
+            total = sum(values)
+            mean = statistics.mean(values)
+            sliced = top_slice(values, 0.10)
+            record = {
+                "month": month,
+                "class": class_name,
+                "hours": len(values),
+                "total_kwh": round_kwh(total),
+                "mean_kwh_per_hour": round_kwh(mean),
+                "top10_hours": "",
+                "top10_total_kwh": "",
+                "top10_mean_kwh_per_hour": "",
+                "top10_share_of_kwh": "",
+                "rest_hours": "",
+                "rest_total_kwh": "",
+                "rest_mean_kwh_per_hour": "",
+                "mean_lift_from_top10": "",
+            }
+            if sliced is not None:
+                record.update(
+                    {
+                        "top10_hours": sliced["top_hours"],
+                        "top10_total_kwh": round_kwh(sliced["top_total"]),
+                        "top10_mean_kwh_per_hour": round_kwh(sliced["top_mean"]),
+                        "top10_share_of_kwh": f"{sliced['share']:.3f}",
+                        "rest_hours": sliced["rest_hours"],
+                        "rest_total_kwh": round_kwh(sliced["rest_total"]),
+                        "rest_mean_kwh_per_hour": round_kwh(sliced["rest_mean"]),
+                        "mean_lift_from_top10": round_kwh(mean - sliced["rest_mean"]),
+                    }
+                )
             records.append(record)
     return records
 
@@ -401,6 +509,35 @@ def main():
     ]
     monthly = summarise(rows, months)
     write_csv(ROOT / "monthly_load_by_class.csv", monthly_fields, monthly)
+
+    total_fields = [
+        "month",
+        "class",
+        "counts_in_month_total",
+        "hours",
+        "mean_kwh_per_hour",
+        "median_kwh_per_hour",
+        "total_kwh",
+        "share_of_month_kwh",
+    ]
+    write_csv(ROOT / "monthly_total_load.csv", total_fields, total_load(rows, months))
+
+    top10_fields = [
+        "month",
+        "class",
+        "hours",
+        "total_kwh",
+        "mean_kwh_per_hour",
+        "top10_hours",
+        "top10_total_kwh",
+        "top10_mean_kwh_per_hour",
+        "top10_share_of_kwh",
+        "rest_hours",
+        "rest_total_kwh",
+        "rest_mean_kwh_per_hour",
+        "mean_lift_from_top10",
+    ]
+    write_csv(ROOT / "top10pct_impact.csv", top10_fields, top10_impact(rows, months))
 
     run_fields = [
         "start",

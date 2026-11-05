@@ -45,11 +45,26 @@ Club training that is not Keep Sailing (Topper squad, theory courses, and simila
 
 `monthly_load_by_class.csv` has one row per month and label.
 
-- `mean_kwh_per_hour` is the true average energy.
+- `mean_kwh_per_hour` is the true average rate.
 - `median_kwh_per_hour` is the typical hour. Use this when a few hours look as if something was left on.
+- `total_kwh` is that mean multiplied by the hours. It is the energy for the period.
 - `mean_kwh_per_day` is the average of the daily totals for days that have at least one hour of that label.
 - `top5pct_kwh_share` is the share of kWh sitting in the highest 5% of hours. A share near 0.05 means the tail is not pulling the total. Classes with at least five hours drop at least one hour, so a short evening still shows its busiest hour. Shorter classes leave these columns blank.
 - `mean_excluding_top5pct` is the mean of the hours that remain, and `mean_minus_top5pct` is how far the raw mean sits above that.
+
+`monthly_total_load.csv` is the same rates scaled up to the bill. `total_kwh` is `mean_kwh_per_hour` times `hours`, and `share_of_month_kwh` is that total as a fraction of the month. The six labels marked `counts_in_month_total` of `yes` add up to the `month_total` row. Wednesday, TrySail, and overnight are parts of hours already in those six, so they are marked `no` and are not added again.
+
+A quiet hour at about 1 kWh, repeated for most of the month, is more energy than a short evening at 3 kWh. The totals are the figures to compare when the question is how much electricity each kind of period used.
+
+## Top 10% of hours
+
+`top10pct_impact.csv` lifts the busiest tenth of hours out of each month and label so their effect on the total is visible on its own.
+
+- `top10_hours` and `top10_total_kwh` are that slice. `top10_share_of_kwh` near 0.10 means those hours carry about the share of time they occupy. A share well above 0.10 means they are pulling the total up.
+- `rest_total_kwh` and `rest_mean_kwh_per_hour` are the period with that slice removed.
+- `mean_lift_from_top10` is how many kWh per hour the raw mean sits above the mean of the rest.
+
+The same five-hour rule as the 5% columns applies: a class with at least five hours drops at least one hour. Shorter classes leave the top-10 columns blank. Ten percent is wide enough to show the tail’s share of the monthly kWh, and still a small part of the hours. The 5% columns in the monthly file remain the tighter cut.
 
 On quiet nights the mean is about 16–41% above the median. In February and March the little-activity mean stays well above the median even after the top 5% is removed: the high daytime load is spread across many hours, not a handful of spikes. The median is the better figure for a typical closed hour in those months.
 
