@@ -1,4 +1,5 @@
-date,weekday,descriptions,little_activity_hours,little_activity_mean_kwh,little_activity_max_kwh,little_activity_total_kwh
+# Club training days with hours labelled little_activity (rates in kWh/h; totals in kWh)
+date,weekday,descriptions,little_activity_hours,little_activity_mean_kWh_per_hour,little_activity_max_kWh,little_activity_total_kWh
 2026-07-21,Tuesday,TrySail RYA Level 1 and Level 2,11,1.875,4.123,20.620
 2026-06-27,Saturday,Adult RYA Powerboat Level 2 course; LASER SKILLS - Saturday Lasers 27/06,15,1.581,7.104,23.711
 2026-09-19,Saturday,RYA RACE COACH LEVEL 3 - TRAINING ROOM; Club Boat Hire - Topper Open 19/09,14,1.518,4.777,21.245

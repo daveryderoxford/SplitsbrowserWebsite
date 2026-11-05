@@ -1,4 +1,5 @@
-month,class,hours,total_kwh,mean_kwh_per_hour,top10_hours,top10_total_kwh,top10_mean_kwh_per_hour,top10_share_of_kwh,rest_hours,rest_total_kwh,rest_mean_kwh_per_hour,mean_lift_from_top10
+# Impact of the busiest 10 percent of hours (totals in kWh; rates in kWh/h; share as fraction of that activity)
+month,activity,hours,total_kWh,mean_kWh_per_hour,top10pct_hours,top10pct_total_kWh,top10pct_mean_kWh_per_hour,top10pct_share_of_kWh,rest_hours,rest_total_kWh,rest_mean_kWh_per_hour,mean_lift_from_top10pct_kWh_per_hour
 2026-02,little_activity,536,1566.675,2.923,54,744.077,13.779,0.475,482,822.598,1.707,1.216
 2026-02,weekend,54,425.221,7.874,5,83.553,16.711,0.196,49,341.668,6.973,0.902
 2026-02,overnight_00_06,144,209.083,1.452,14,44.968,3.212,0.215,130,164.115,1.262,0.190

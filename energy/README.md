@@ -8,7 +8,7 @@ Run it again with:
 python3 energy/classify_load.py
 ```
 
-The script uses only the Python standard library. It rewrites the CSV files next to itself.
+The script uses only the Python standard library. It rewrites the CSV files next to itself. Each table starts with a `#` title line that names the table and its units. Column headers also carry the unit (`kWh` for energy, `kWh_per_hour` for rates, and a fraction for shares).
 
 ## Readings
 

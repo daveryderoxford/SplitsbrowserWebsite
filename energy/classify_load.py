@@ -430,12 +430,16 @@ def top10_impact(rows, months):
     return records
 
 
-def write_csv(path, fieldnames, records):
+def write_csv(path, fieldnames, records, title=None, header_labels=None):
+    """Write a titled CSV. The first line is a # title; column names carry units."""
+    labels = header_labels or {name: name for name in fieldnames}
     with path.open("w", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
-        writer.writeheader()
+        if title:
+            handle.write(f"# {title}\n")
+        writer = csv.writer(handle)
+        writer.writerow([labels[name] for name in fieldnames])
         for record in records:
-            writer.writerow(record)
+            writer.writerow([record.get(name, "") for name in fieldnames])
 
 
 def main():
@@ -488,7 +492,24 @@ def main():
         }
         for row in rows
     ]
-    write_csv(ROOT / "hourly_classified.csv", hourly_fields, hourly)
+    write_csv(
+        ROOT / "hourly_classified.csv",
+        hourly_fields,
+        hourly,
+        title=(
+            "Hourly electricity readings by activity label "
+            "(energy in kWh for the hour starting at timestamp)"
+        ),
+        header_labels={
+            "timestamp": "timestamp",
+            "month": "month",
+            "kwh": "energy_kWh",
+            "label": "activity_label",
+            "evening_detail": "evening_detail",
+            "on_training_day": "on_training_day",
+            "quiet_high": "quiet_high_flag",
+        },
+    )
 
     monthly_fields = [
         "month",
@@ -508,7 +529,34 @@ def main():
         "single_high_night_hours",
     ]
     monthly = summarise(rows, months)
-    write_csv(ROOT / "monthly_load_by_class.csv", monthly_fields, monthly)
+    write_csv(
+        ROOT / "monthly_load_by_class.csv",
+        monthly_fields,
+        monthly,
+        title=(
+            "Monthly load by activity "
+            "(rates in kWh/h; totals in kWh; shares as fraction of that class)"
+        ),
+        header_labels={
+            "month": "month",
+            "class": "activity",
+            "hours": "hours",
+            "days": "days",
+            "total_kwh": "total_kWh",
+            "mean_kwh_per_hour": "mean_kWh_per_hour",
+            "median_kwh_per_hour": "median_kWh_per_hour",
+            "mean_kwh_per_day": "mean_kWh_per_day",
+            "top5pct_hours": "top5pct_hours",
+            "top5pct_kwh_share": "top5pct_share_of_kWh",
+            "mean_excluding_top5pct": "mean_excluding_top5pct_kWh_per_hour",
+            "mean_minus_top5pct": "mean_lift_from_top5pct_kWh_per_hour",
+            "night_left_on_hours": "night_left_on_hours",
+            "mean_excluding_night_left_on": (
+                "mean_excluding_night_left_on_kWh_per_hour"
+            ),
+            "single_high_night_hours": "single_high_night_hours",
+        },
+    )
 
     total_fields = [
         "month",
@@ -520,7 +568,25 @@ def main():
         "total_kwh",
         "share_of_month_kwh",
     ]
-    write_csv(ROOT / "monthly_total_load.csv", total_fields, total_load(rows, months))
+    write_csv(
+        ROOT / "monthly_total_load.csv",
+        total_fields,
+        total_load(rows, months),
+        title=(
+            "Monthly total electricity by activity "
+            "(total_kWh = mean_kWh_per_hour x hours; share is fraction of the month)"
+        ),
+        header_labels={
+            "month": "month",
+            "class": "activity",
+            "counts_in_month_total": "counts_in_month_total",
+            "hours": "hours",
+            "mean_kwh_per_hour": "mean_kWh_per_hour",
+            "median_kwh_per_hour": "median_kWh_per_hour",
+            "total_kwh": "total_kWh",
+            "share_of_month_kwh": "share_of_month_kWh",
+        },
+    )
 
     top10_fields = [
         "month",
@@ -537,7 +603,30 @@ def main():
         "rest_mean_kwh_per_hour",
         "mean_lift_from_top10",
     ]
-    write_csv(ROOT / "top10pct_impact.csv", top10_fields, top10_impact(rows, months))
+    write_csv(
+        ROOT / "top10pct_impact.csv",
+        top10_fields,
+        top10_impact(rows, months),
+        title=(
+            "Impact of the busiest 10 percent of hours "
+            "(totals in kWh; rates in kWh/h; share as fraction of that activity)"
+        ),
+        header_labels={
+            "month": "month",
+            "class": "activity",
+            "hours": "hours",
+            "total_kwh": "total_kWh",
+            "mean_kwh_per_hour": "mean_kWh_per_hour",
+            "top10_hours": "top10pct_hours",
+            "top10_total_kwh": "top10pct_total_kWh",
+            "top10_mean_kwh_per_hour": "top10pct_mean_kWh_per_hour",
+            "top10_share_of_kwh": "top10pct_share_of_kWh",
+            "rest_hours": "rest_hours",
+            "rest_total_kwh": "rest_total_kWh",
+            "rest_mean_kwh_per_hour": "rest_mean_kWh_per_hour",
+            "mean_lift_from_top10": "mean_lift_from_top10pct_kWh_per_hour",
+        },
+    )
 
     run_fields = [
         "start",
@@ -568,7 +657,26 @@ def main():
             }
         )
     run_records.sort(key=lambda record: record["start"])
-    write_csv(ROOT / "left_on_runs.csv", run_fields, run_records)
+    write_csv(
+        ROOT / "left_on_runs.csv",
+        run_fields,
+        run_records,
+        title=(
+            "Quiet multi-hour runs above 3x that month night median "
+            "(all energy columns in kWh; threshold is kWh for one hour)"
+        ),
+        header_labels={
+            "start": "start",
+            "end": "end",
+            "period": "period",
+            "hours": "hours",
+            "peak_kwh": "peak_kWh",
+            "total_kwh": "total_kWh",
+            "night_median_kwh": "night_median_kWh",
+            "threshold_kwh": "threshold_kWh",
+            "excess_above_night_median_kwh": "excess_above_night_median_kWh",
+        },
+    )
 
     single_fields = [
         "timestamp",
@@ -585,11 +693,29 @@ def main():
             "kwh": round_kwh(item["kwh"]),
             "night_median_kwh": round_kwh(item["night_median"]),
             "threshold_kwh": round_kwh(item["threshold"]),
-            "excess_above_night_median_kwh": round_kwh(item["kwh"] - item["night_median"]),
+            "excess_above_night_median_kwh": round_kwh(
+                item["kwh"] - item["night_median"]
+            ),
         }
         for period, item in singles
     ]
-    write_csv(ROOT / "single_high_hours.csv", single_fields, single_records)
+    write_csv(
+        ROOT / "single_high_hours.csv",
+        single_fields,
+        single_records,
+        title=(
+            "Single quiet hours above 3x that month night median "
+            "(all energy columns in kWh)"
+        ),
+        header_labels={
+            "timestamp": "timestamp",
+            "period": "period",
+            "kwh": "energy_kWh",
+            "night_median_kwh": "night_median_kWh",
+            "threshold_kwh": "threshold_kWh",
+            "excess_above_night_median_kwh": "excess_above_night_median_kWh",
+        },
+    )
 
     training_by_date = {}
     for row in rows:
@@ -635,6 +761,19 @@ def main():
             "little_activity_total_kwh",
         ],
         training_records,
+        title=(
+            "Club training days with hours labelled little_activity "
+            "(rates in kWh/h; totals in kWh)"
+        ),
+        header_labels={
+            "date": "date",
+            "weekday": "weekday",
+            "descriptions": "descriptions",
+            "little_activity_hours": "little_activity_hours",
+            "little_activity_mean_kwh": "little_activity_mean_kWh_per_hour",
+            "little_activity_max_kwh": "little_activity_max_kWh",
+            "little_activity_total_kwh": "little_activity_total_kWh",
+        },
     )
 
     night_runs = [group for period, group in runs if period == "night"]

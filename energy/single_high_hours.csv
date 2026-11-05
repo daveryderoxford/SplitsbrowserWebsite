@@ -1,4 +1,5 @@
-timestamp,period,kwh,night_median_kwh,threshold_kwh,excess_above_night_median_kwh
+# Single quiet hours above 3x that month night median (all energy columns in kWh)
+timestamp,period,energy_kWh,night_median_kWh,threshold_kWh,excess_above_night_median_kWh
 2026-02-06 03:00,night,4.318,1.179,3.536,3.139
 2026-02-07 01:00,night,3.710,1.179,3.536,2.531
 2026-02-07 18:00,daytime,5.402,1.179,3.536,4.223

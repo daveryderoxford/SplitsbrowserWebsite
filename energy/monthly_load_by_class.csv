@@ -1,4 +1,5 @@
-month,class,hours,days,total_kwh,mean_kwh_per_hour,median_kwh_per_hour,mean_kwh_per_day,top5pct_hours,top5pct_kwh_share,mean_excluding_top5pct,mean_minus_top5pct,night_left_on_hours,mean_excluding_night_left_on,single_high_night_hours
+# Monthly load by activity (rates in kWh/h; totals in kWh; shares as fraction of that class)
+month,activity,hours,days,total_kWh,mean_kWh_per_hour,median_kWh_per_hour,mean_kWh_per_day,top5pct_hours,top5pct_share_of_kWh,mean_excluding_top5pct_kWh_per_hour,mean_lift_from_top5pct_kWh_per_hour,night_left_on_hours,mean_excluding_night_left_on_kWh_per_hour,single_high_night_hours
 2026-02,little_activity,536,25,1566.675,2.923,1.308,62.667,27,0.272,2.241,0.682,0,2.923,4
 2026-02,weekend,54,7,425.221,7.874,8.070,60.746,3,0.132,7.238,0.636,,,
 2026-02,overnight_00_06,144,24,209.083,1.452,1.179,8.712,7,0.122,1.341,0.111,0,1.452,4

@@ -1,4 +1,5 @@
-timestamp,month,kwh,label,evening_detail,on_training_day,quiet_high
+# Hourly electricity readings by activity label (energy in kWh for the hour starting at timestamp)
+timestamp,month,energy_kWh,activity_label,evening_detail,on_training_day,quiet_high_flag
 2026-02-04 10:00,2026-02,1.382,little_activity,,,
 2026-02-04 11:00,2026-02,2.902,little_activity,,,
 2026-02-04 12:00,2026-02,2.085,little_activity,,,

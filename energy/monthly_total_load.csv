@@ -1,4 +1,5 @@
-month,class,counts_in_month_total,hours,mean_kwh_per_hour,median_kwh_per_hour,total_kwh,share_of_month_kwh
+# Monthly total electricity by activity (total_kWh = mean_kWh_per_hour x hours; share is fraction of the month)
+month,activity,counts_in_month_total,hours,mean_kWh_per_hour,median_kWh_per_hour,total_kWh,share_of_month_kWh
 2026-02,little_activity,yes,536,2.923,1.308,1566.675,0.787
 2026-02,weekend,yes,54,7.874,8.070,425.221,0.213
 2026-02,month_total,yes,590,3.376,1.419,1991.896,1.000
